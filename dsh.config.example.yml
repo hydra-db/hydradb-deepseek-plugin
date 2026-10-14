@@ -1,0 +1,10 @@
+# Mount the HydraDB plugin in a DeepSeek Harness (dsh) profile.
+# Add this entry to your dsh profile layer (a cordis.patch.yml plugin list or
+# an apps/cli/config/examples overlay), then provide credentials via config
+# below or the HYDRADB_* / HYDRA_DEEPSEEK_* environment.
+- name: 'dsh-hydradb'
+  config:
+    api_key: ${HYDRADB_API_KEY}
+    database: ${HYDRADB_DATABASE}
+    # collection: optional sub-tenant scope
+    # base_url: https://api.hydradb.com

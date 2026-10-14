@@ -1,0 +1,10 @@
+# Bundle layer: inserts the HydraDB plugin row when a profile lists this bundle.
+# `dsh plugin add dsh-hydradb` appends it to the profile's bundles
+# automatically (the package declares dsh.bundle). Credentials resolve from the
+# HYDRADB_* / HYDRA_DEEPSEEK_* environment, or add a `config:` block here:
+#   config:
+#     api_key: ${HYDRADB_API_KEY}
+#     database: ${HYDRADB_DATABASE}
+- insert:
+    - id: hydradb
+      name: 'dsh-hydradb'
