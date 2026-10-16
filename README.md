@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/hydra-db/hydradb-deepseek-plugin/main/assets/icon.png" width="96" alt="HydraDB" />
+</p>
+
 # HydraDB DeepSeek Harness Plugin
 
 Persistent, cross-session memory for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)

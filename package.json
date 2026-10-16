@@ -1,6 +1,6 @@
 {
   "name": "dsh-hydradb",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Persistent long-term memory for the DeepSeek Harness (dsh) via HydraDB: prompt-time recall, workspace sync, and turn capture over the harness Cordis seams.",
   "author": "HydraDB <support@hydradb.com>",
   "license": "Apache-2.0",
