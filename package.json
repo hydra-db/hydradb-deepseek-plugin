@@ -39,6 +39,7 @@
     "dsh.config.example.yml",
     "skills",
     "scripts",
+    "tests/openapi-query.test.mjs",
     "hydradb-api-info",
     "config.example.json",
     ".hydradb-plugin.json.example",
@@ -65,7 +66,7 @@
     "node": ">=18"
   },
   "scripts": {
-    "check": "node scripts/check.mjs && node --test tests/openapi-query.test.mjs",
+    "check": "node scripts/check-runner.mjs && node --test tests/openapi-query.test.mjs",
     "build:vendor": "node scripts/build-vendor.mjs",
     "pack:dry-run": "npm pack --dry-run"
   },
