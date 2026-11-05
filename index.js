@@ -60,6 +60,16 @@ function parseContext(out) {
   return ""
 }
 
+/** Find the last assistant-authored message object in a step batch. */
+function lastAssistantMessage(messages = []) {
+  if (!Array.isArray(messages)) return null
+  for (let i = messages.length - 1; i >= 0; i--) {
+    const m = messages[i]
+    if ((m?.source?.kind ?? m?.role) === "assistant") return m
+  }
+  return null
+}
+
 /** Collect the plain text of the last user-authored message in a step batch. */
 function lastUserText(messages = []) {
   for (let i = messages.length - 1; i >= 0; i--) {
@@ -147,6 +157,16 @@ export function apply(ctx, config = {}) {
 
   ctx.on("session/event", (session, event) => {
     if (event?.type !== "turn/end") return
-    runEngine("stop", JSON.stringify({ session_id: String(session?.id ?? "") }), config)
+    // Save BOTH sides of the turn under the same session id used at recall
+    // (agent.sessionId, which equals session.id), so the engine pairs the
+    // completed reply with the pending prompt instead of skipping an empty turn.
+    const messages = event?.messages ?? session?.messages ?? event?.data?.messages ?? []
+    const assistant = event?.message ?? event?.response ?? lastAssistantMessage(messages)
+    const sessionId = session?.sessionId ?? session?.id ?? "dsh"
+    runEngine(
+      "stop",
+      JSON.stringify({ session_id: String(sessionId), last_assistant_message: assistant }),
+      config
+    )
   })
 }
