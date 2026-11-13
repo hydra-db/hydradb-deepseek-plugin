@@ -157,9 +157,8 @@ export function apply(ctx, config = {}) {
 
   ctx.on("session/event", (session, event) => {
     if (event?.type !== "turn/end") return
-    // Save BOTH sides of the turn under the same session id used at recall
-    // (agent.sessionId, which equals session.id), so the engine pairs the
-    // completed reply with the pending prompt instead of skipping an empty turn.
+    // Save both sides of the turn under the recall session id so the engine
+    // pairs the reply with the pending prompt instead of skipping an empty turn.
     const messages = event?.messages ?? session?.messages ?? event?.data?.messages ?? []
     const assistant = event?.message ?? event?.response ?? lastAssistantMessage(messages)
     const sessionId = session?.sessionId ?? session?.id ?? "dsh"
