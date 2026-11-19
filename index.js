@@ -22,6 +22,7 @@ function engineEnv(config = {}) {
   set("HYDRADB_DATABASE", config.database)
   set("HYDRADB_COLLECTION", config.collection)
   set("HYDRADB_BASE_URL", config.base_url)
+  set("HYDRADB_LAYOUT", config.layout)
   return env
 }
 
